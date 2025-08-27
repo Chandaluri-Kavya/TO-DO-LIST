@@ -1,160 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scheduled Todo List</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scheduled Todo List</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <h1 class="app-title">Scheduled Todo List</h1>
-            <p class="app-subtitle">Organize your tasks with time-based scheduling</p>
-        </header>
+<div class="app-container">
+<header class="app-header">
+<h1 class="app-title">Scheduled Todo List</h1>
+<p class="app-subtitle">Organize your tasks with time-based scheduling</p>
+</header>
 
-        <main class="main-content">
-            <!-- Task Input Section -->
-            <section class="input-section">
-                <div class="input-form">
-                    <div class="input-group">
-                        <input 
-                            type="text" 
-                            id="taskInput" 
-                            class="form-control task-input" 
-                            placeholder="What needs to be done?"
-                            maxlength="200"
-                        >
-                        <button id="addTaskBtn" class="btn btn--primary add-btn">
-                            <span class="btn-icon">+</span>
-                            Add Task
-                        </button>
-                    </div>
-                    
-                    <div class="datetime-inputs">
-                        <div class="datetime-group">
-                            <label for="dueDateInput" class="form-label">Due Date (Optional)</label>
-                            <input 
-                                type="date" 
-                                id="dueDateInput" 
-                                class="form-control date-input"
-                            >
-                        </div>
-                        <div class="datetime-group">
-                            <label for="dueTimeInput" class="form-label">Due Time (Optional)</label>
-                            <input 
-                                type="time" 
-                                id="dueTimeInput" 
-                                class="form-control time-input"
-                            >
-                        </div>
-                        <button id="clearDateTimeBtn" class="btn btn--secondary clear-datetime">
-                            Clear Date/Time
-                        </button>
-                    </div>
-                </div>
-            </section>
+<main class="main-content">
+<section class="input-section">
+<div class="input-form">
+<div class="input-group">
+<input
+type="text"
+id="taskInput"
+class="form-control task-input"
+placeholder="What needs to be done?"
+maxlength="200"
+>
+<button id="addTaskBtn" class="btn btn--primary add-btn">
+<span class="btn-icon">+</span>
+Add Task
+</button>
+</div>
 
-            <!-- Statistics Section -->
-            <section class="stats-section">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalCount">0</span>
-                        <span class="stat-label">Total Tasks</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="activeCount">0</span>
-                        <span class="stat-label">Active</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="completedCount">0</span>
-                        <span class="stat-label">Completed</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="overdueCount">0</span>
-                        <span class="stat-label">Overdue</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="todayCount">0</span>
-                        <span class="stat-label">Due Today</span>
-                    </div>
-                </div>
-            </section>
+<div class="datetime-inputs">
+<div class="datetime-group">
+<label for="dueDateInput" class="form-label">Due Date (Optional)</label>
+<input
+type="date"
+id="dueDateInput"
+class="form-control date-input"
+>
+</div>
+<div class="datetime-group">
+<label for="dueTimeInput" class="form-label">Due Time (Optional)</label>
+<input
+type="time"
+id="dueTimeInput"
+class="form-control time-input"
+>
+</div>
+<button id="clearDateTimeBtn" class="btn btn--secondary clear-datetime">
+Clear Date/Time
+</button>
+</div>
+</div>
+</section>
 
-            <!-- Filter Section -->
-            <section class="filter-section">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="active">Active</button>
-                    <button class="filter-btn" data-filter="completed">Completed</button>
-                    <button class="filter-btn" data-filter="overdue">Overdue</button>
-                    <button class="filter-btn" data-filter="today">Today</button>
-                    <button class="filter-btn" data-filter="thisweek">This Week</button>
-                </div>
-                <div class="filter-actions">
-                    <button id="clearCompletedBtn" class="btn btn--outline">
-                        Clear Completed
-                    </button>
-                </div>
-            </section>
+<section class="stats-section">
+<div class="stats-grid">
+<div class="stat-item">
+<span class="stat-number" id="totalCount">0</span>
+<span class="stat-label">Total Tasks</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" id="activeCount">0</span>
+<span class="stat-label">Active</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" id="completedCount">0</span>
+<span class="stat-label">Completed</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" id="overdueCount">0</span>
+<span class="stat-label">Overdue</span>
+</div>
+<div class="stat-item">
+<span class="stat-number" id="todayCount">0</span>
+<span class="stat-label">Due Today</span>
+</div>
+</div>
+</section>
 
-            <!-- Task List Section -->
-            <section class="tasks-section">
-                <div id="tasksList" class="tasks-list">
-                    <!-- Tasks will be dynamically added here -->
-                </div>
-                <div id="emptyState" class="empty-state">
-                    <div class="empty-icon">📝</div>
-                    <h3>No tasks yet</h3>
-                    <p>Add your first task above to get started with scheduling!</p>
-                </div>
-            </section>
-        </main>
+<section class="filter-section">
+<div class="filter-buttons">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="active">Active</button>
+<button class="filter-btn" data-filter="completed">Completed</button>
+<button class="filter-btn" data-filter="overdue">Overdue</button>
+<button class="filter-btn" data-filter="today">Today</button>
+<button class="filter-btn" data-filter="thisweek">This Week</button>
+</div>
+<div class="filter-actions">
+<button id="clearCompletedBtn" class="btn btn--outline">
+Clear Completed
+</button>
+</div>
+</section>
 
-        <!-- Task Edit Modal -->
-        <div id="editModal" class="modal hidden">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Edit Task</h3>
-                    <button id="closeModalBtn" class="close-btn">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="editTaskText" class="form-label">Task Text</label>
-                        <input 
-                            type="text" 
-                            id="editTaskText" 
-                            class="form-control"
-                            maxlength="200"
-                        >
-                    </div>
-                    <div class="datetime-inputs">
-                        <div class="datetime-group">
-                            <label for="editDueDate" class="form-label">Due Date</label>
-                            <input 
-                                type="date" 
-                                id="editDueDate" 
-                                class="form-control"
-                            >
-                        </div>
-                        <div class="datetime-group">
-                            <label for="editDueTime" class="form-label">Due Time</label>
-                            <input 
-                                type="time" 
-                                id="editDueTime" 
-                                class="form-control"
-                            >
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancelEditBtn" class="btn btn--secondary">Cancel</button>
-                    <button id="saveEditBtn" class="btn btn--primary">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="tasks-section">
+<div id="tasksList" class="tasks-list">
+</div>
+<div id="emptyState" class="empty-state">
+<div class="empty-icon">📝</div>
+<h3>No tasks yet</h3>
+<p>Add your first task above to get started with scheduling!</p>
+</div>
+</section>
+</main>
+<div id="editModal" class="modal hidden">
+<div class="modal-content">
+<div class="modal-header">
+<h3>Edit Task</h3>
+<button id="closeModalBtn" class="close-btn">&times;</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label for="editTaskText" class="form-label">Task Text</label>
+<input
+type="text"
+id="editTaskText"
+class="form-control"
+maxlength="200"
+>
+</div>
+<div class="datetime-inputs">
+<div class="datetime-group">
+<label for="editDueDate" class="form-label">Due Date</label>
+<input
+type="date"
+id="editDueDate"
+class="form-control"
+>
+</div>
+<div class="datetime-group">
+<label for="editDueTime" class="form-label">Due Time</label>
+<input
+type="time"
+id="editDueTime"
+class="form-control"
+>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button id="cancelEditBtn" class="btn btn--secondary">Cancel</button>
+<button id="saveEditBtn" class="btn btn--primary">Save Changes</button>
+</div>
+</div>
+</div>
+</div>
 
-    <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
